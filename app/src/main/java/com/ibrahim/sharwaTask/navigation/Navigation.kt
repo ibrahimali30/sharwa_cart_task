@@ -15,14 +15,15 @@ import com.ibrahim.sharwaTask.home.HomeScreen
 fun Navigation(
     modifier: Modifier,
     navController: NavHostController, state: ItemsState,
-    onAddToCartClicked: (MenuItem) -> Unit = {}
+    onAddToCartClicked: (MenuItem) -> Unit = {},
+    onAClearClicked: () -> Unit = {},
 ) {
     NavHost(modifier = modifier, navController = navController, startDestination = "home") {
         composable("home") {
             HomeScreen(state.items, onAddToCartClicked)
         }
         composable("cart") {
-            CartScreen(state.cartTtems, onAddToCartClicked)
+            CartScreen(state.cartTtems, onAddToCartClicked, onAClearClicked)
         }
     }
 }

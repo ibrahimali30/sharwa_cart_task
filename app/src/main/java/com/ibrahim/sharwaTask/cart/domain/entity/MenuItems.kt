@@ -20,5 +20,6 @@ data class MenuItem(
     val id: String,
     val name: String,
     val price: Int,
-    var isAddedToCart: Boolean = false
+    var isAddedToCart: Boolean = false,
+    var isLoading: Boolean = false
 )

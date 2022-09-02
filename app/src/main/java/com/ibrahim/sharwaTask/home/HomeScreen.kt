@@ -3,18 +3,16 @@ package com.ibrahim.sharwaTask.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
 import com.ibrahim.sharwaTask.cart.domain.entity.MenuItem
 import com.ibrahim.sharwaTask.ui.theme.Green
@@ -60,14 +58,22 @@ fun MenuItemComposable(menuItem: MenuItem, onAddToCartClicked: (MenuItem) -> Uni
                 )
 
             ) {
-                Row() {
-                    Icon(
-                        imageVector = ptIcon,
-                        "",
-                        tint = Color.White
+                if (menuItem.isLoading){
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(14.dp),
+                        color = Color.White,
+                        strokeWidth = 2.dp
                     )
+                }else{
+                    Row() {
+                        Icon(
+                            imageVector = ptIcon,
+                            "",
+                            tint = Color.White
+                        )
 
-                    Text(text = text, color = Color.White)
+                        Text(text = text, color = Color.White)
+                    }
                 }
             }
         }

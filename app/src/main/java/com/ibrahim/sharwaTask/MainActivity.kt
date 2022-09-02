@@ -71,7 +71,10 @@ class MainActivity : ComponentActivity() {
                         state = viewModel.state.value,
                         onAddToCartClicked = {
                             viewModel.onAddToCartClicked(it)
-                        }
+                        },
+                        onAClearClicked = {
+                            viewModel.clearCart()
+                        },
                     )
                 }
             }
