@@ -29,7 +29,7 @@ import com.ibrahim.sharwaTask.ui.theme.Yellow
 
 @Composable
 fun HomeScreen(
-    state: ItemsState,
+    items: List<MenuItem> = listOf(),
     onAddToCartClicked: (MenuItem) -> Unit = {}
 ) {
     LazyColumn(
@@ -37,38 +37,43 @@ fun HomeScreen(
             .fillMaxSize()
             .padding(top = 8.dp)
     ) {
-        items(state.items){ menuItem->
-            Card(Modifier.padding(8.dp)) {
-                Column(Modifier.padding(8.dp)) {
+        items(items){ menuItem->
+            MenuItemComposable(menuItem, onAddToCartClicked)
+        }
+    }
+}
 
-                    Text(text = menuItem.name, fontSize = 20.sp, color = Color.Black)
-                    Text(text = menuItem.decscriptionText, fontSize = 14.sp, color = Color.Gray)
-                    Text(text = "${menuItem.price} ${menuItem.currecy}", fontSize = 16.sp, color = Green)
+@Composable
+fun MenuItemComposable(menuItem: MenuItem, onAddToCartClicked: (MenuItem) -> Unit) {
+    Card(Modifier.padding(8.dp)) {
+        Column(Modifier.padding(8.dp)) {
 
-                    val pg = if (menuItem.isAddedToCart) Color.Red else Yellow
-                    val ptIcon = if (menuItem.isAddedToCart) Icons.Default.Delete else Icons.Default.Add
-                    val text = if (menuItem.isAddedToCart) "Remove from cart" else "Add to cart"
-                    Button(
-                        modifier = Modifier
-                            .padding(horizontal = 8.dp)
-                            .padding(top = 8.dp)
-                            .fillMaxWidth(),
-                        onClick = { onAddToCartClicked(menuItem) },
-                        colors = buttonColors(
-                            backgroundColor = pg
-                        )
+            Text(text = menuItem.name, fontSize = 20.sp, color = Color.Black)
+            Text(text = menuItem.decscriptionText, fontSize = 14.sp, color = Color.Gray)
+            Text(text = "${menuItem.price} ${menuItem.currecy}", fontSize = 16.sp, color = Green)
 
-                    ) {
-                        Row() {
-                            Icon(
-                                imageVector = ptIcon,
-                                "",
-                                tint = Color.White
-                            )
+            val pg = if (menuItem.isAddedToCart) Color.Red else Yellow
+            val ptIcon = if (menuItem.isAddedToCart) Icons.Default.Delete else Icons.Default.Add
+            val text = if (menuItem.isAddedToCart) "Remove from cart" else "Add to cart"
+            Button(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .padding(top = 8.dp)
+                    .fillMaxWidth(),
+                onClick = { onAddToCartClicked(menuItem) },
+                colors = buttonColors(
+                    backgroundColor = pg
+                )
 
-                            Text(text = text, color = Color.White)
-                        }
-                    }
+            ) {
+                Row() {
+                    Icon(
+                        imageVector = ptIcon,
+                        "",
+                        tint = Color.White
+                    )
+
+                    Text(text = text, color = Color.White)
                 }
             }
         }

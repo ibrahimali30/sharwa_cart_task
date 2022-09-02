@@ -69,7 +69,11 @@ data class ItemsState(
     val items: List<MenuItem> = listOf(),
 ) {
     val cartCount: Int
-    get() = items.filter { it.isAddedToCart }.size
+        get() = items.filter { it.isAddedToCart }.size
+
+
+    val cartTtems: List<MenuItem>
+        get() = items.filter { it.isAddedToCart }
 }
 
 

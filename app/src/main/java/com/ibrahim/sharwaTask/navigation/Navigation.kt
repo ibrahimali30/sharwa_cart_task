@@ -20,10 +20,10 @@ fun Navigation(
 ) {
     NavHost(modifier = modifier, navController = navController, startDestination = "home") {
         composable("home") {
-            HomeScreen(state, onAddToCartClicked)
+            HomeScreen(state.items, onAddToCartClicked)
         }
         composable("cart") {
-            CartScreen(state, onAddToCartClicked)
+            CartScreen(state.cartTtems, onAddToCartClicked)
         }
     }
 }
