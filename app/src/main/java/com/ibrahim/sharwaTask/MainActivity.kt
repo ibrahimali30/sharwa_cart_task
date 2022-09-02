@@ -17,8 +17,12 @@ import androidx.navigation.compose.rememberNavController
 import com.ibrahim.sharwaTask.home.BottomNavigationBar
 import com.ibrahim.sharwaTask.navigation.Navigation
 import com.ibrahim.sharwaTask.ui.theme.TaskTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     @OptIn(ExperimentalMaterialApi::class)
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {

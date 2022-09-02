@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -46,7 +48,7 @@ android {
     }
 }
 
-dependencies {
+dependencies {configuration ->
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
@@ -63,6 +65,20 @@ dependencies {
 
     implementation "androidx.navigation:navigation-compose:2.4.0-alpha06"
 
+    setupHilt(configuration)
 
+
+}
+
+
+private static setupHilt(configuration) {
+    def hilt_version = "2.40.5"
+    configuration.implementation "com.google.dagger:hilt-android:$hilt_version"
+    configuration.kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    configuration.testImplementation("com.google.dagger:hilt-android-testing:$hilt_version")
+    configuration.kaptTest("com.google.dagger:hilt-android-compiler:$hilt_version")
+    configuration.testAnnotationProcessor("com.google.dagger:hilt-android-compiler:$hilt_version")
+    configuration.androidTestImplementation("com.google.dagger:hilt-android-testing:$hilt_version")
+    configuration.kaptAndroidTest("com.google.dagger:hilt-android-compiler:$hilt_version")
 
 }
