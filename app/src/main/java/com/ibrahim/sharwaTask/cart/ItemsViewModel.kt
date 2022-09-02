@@ -19,7 +19,7 @@ class ItemsViewModel @Inject constructor(
 
 ): ViewModel(){
 
-    val state: MutableState<ItemsState> = mutableStateOf(ItemsState(getMokedList()))
+    val state: MutableState<ItemsState> = mutableStateOf(ItemsState(ItemsRemoteDataSource().getMokedList()!!.get(0).menuCategory))
 
 
     init {
@@ -76,23 +76,3 @@ data class ItemsState(
         get() = items.filter { it.isAddedToCart }
 }
 
-
-data class MenuItem(
-    val id: String,
-    val name: String,
-    val icon: String,
-    val decscriptionText: String,
-    val price: Int,
-    val currecy: String,
-    var isAddedToCart: Boolean = false
-)
-
-fun getMokedList() = listOf(
-    MenuItem("1","name","icon","decscriptionText",1,"currecy"),
-    MenuItem("2","name","icon","decscriptionText",1,"currecy"),
-    MenuItem("3","name","icon","decscriptionText",1,"currecy"),
-    MenuItem("4","name","icon","decscriptionText",1,"currecy"),
-    MenuItem("5","name","icon","decscriptionText",1,"currecy"),
-    MenuItem("6","name","icon","decscriptionText",1,"currecy"),
-    MenuItem("7","name","icon","decscriptionText",1,"currecy"),
-)
