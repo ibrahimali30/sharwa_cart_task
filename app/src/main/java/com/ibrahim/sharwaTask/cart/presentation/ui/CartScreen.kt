@@ -23,7 +23,7 @@ import com.ibrahim.sharwaTask.ui.theme.Yellow
 @Composable
 fun CartScreen(
     items: List<MenuItem>,
-    price: Int,
+    price: Int = 0,
     onAddToCartClicked: (MenuItem) -> Unit = {},
     onAClearClicked: () -> Unit = {}
 ) {
