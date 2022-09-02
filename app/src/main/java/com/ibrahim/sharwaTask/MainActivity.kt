@@ -20,7 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.ibrahim.sharwaTask.cart.presentation.viewmodel.ItemsViewModel
 import com.ibrahim.sharwaTask.home.BottomNavigationBar
-import com.ibrahim.sharwaTask.navigation.Navigation
+import com.ibrahim.sharwaTask.cart.presentation.navigation.Navigation
 import com.ibrahim.sharwaTask.test.TAG_MENU_Cart
 import com.ibrahim.sharwaTask.test.TAG_MENU_HOME
 import com.ibrahim.sharwaTask.ui.navigation.Screen
@@ -40,8 +40,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val viewModel = hiltViewModel<ItemsViewModel>()
 
-            Log.d("TAG", "addHeroList: sssssssssssssss")
-            TaskTheme() {
+            TaskTheme {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = {

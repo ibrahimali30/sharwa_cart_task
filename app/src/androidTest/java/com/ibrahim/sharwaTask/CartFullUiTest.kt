@@ -14,9 +14,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -33,7 +31,6 @@ import com.ibrahim.sharwaTask.home.CartScreen
 import com.ibrahim.sharwaTask.home.HomeScreen
 import com.ibrahim.sharwaTask.ui.navigation.Screen
 import com.ibrahim.sharwaTask.ui.theme.TaskTheme
-import com.ibrahim.sharwaTask.MainActivity
 import com.ibrahim.sharwaTask.extensions.waitUntilDoesNotExist
 import com.ibrahim.sharwaTask.test.*
 import dagger.Module
@@ -80,8 +77,6 @@ class CartFullUiTest {
     @get:Rule(order = 1)
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
-
-    val itemsRemoteDataSource = ItemsRemoteDataSource()
     lateinit var viewModel: ItemsViewModel
 
 
@@ -167,7 +162,6 @@ class CartFullUiTest {
     fun test_Add_To_Cart(){
         composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAGGGG") // For learning the ui tree system
 
-//        composeTestRule.onNodeWithTag(TAG_MENU_HOME).performClick()
         composeTestRule.onAllNodesWithTag(TAG_Item_Name, useUnmergedTree = true).onFirst().assertTextEquals(
             "Desert 1",
         )
@@ -187,16 +181,11 @@ class CartFullUiTest {
         )
         button.assertTextEquals("Remove from cart")
 
-
-//        composeTestRule.onAllNodesWithTag(TAG_Add_To_Cart).onFirst().assertIsNotDisplayed()
-
-
         composeTestRule.onNodeWithTag(TAG_MENU_Cart).performClick()
 
         composeTestRule.onAllNodesWithTag(TAG_Item_Name, useUnmergedTree = true).onFirst().assertTextEquals(
             "Desert 1",
         )
-
     }
 
     @Test
@@ -211,7 +200,6 @@ class CartFullUiTest {
             hasTestTag(TAG_Add_To_Cart_Progress),
             timeoutMillis = 3000
         )
-
 
         composeTestRule.onAllNodesWithTag(TAG_Add_To_Cart).onFirst().assertDoesNotExist()
 
@@ -230,11 +218,7 @@ class CartFullUiTest {
 
         composeTestRule.onNodeWithText("Yor Cart IS Empty").assertIsDisplayed()
 
-
     }
-
-
-
 
 }
 
