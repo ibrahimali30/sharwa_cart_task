@@ -23,7 +23,7 @@ fun Navigation(
             HomeScreen(state.items, onAddToCartClicked)
         }
         composable("cart") {
-            CartScreen(state.cartTtems, onAddToCartClicked, onAClearClicked)
+            CartScreen(state.cartTtems,state.price, onAddToCartClicked, onAClearClicked)
         }
     }
 }

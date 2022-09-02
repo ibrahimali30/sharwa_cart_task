@@ -23,6 +23,7 @@ import com.ibrahim.sharwaTask.ui.theme.Yellow
 @Composable
 fun CartScreen(
     items: List<MenuItem>,
+    price: Int,
     onAddToCartClicked: (MenuItem) -> Unit = {},
     onAClearClicked: () -> Unit = {}
 ) {
@@ -31,19 +32,26 @@ fun CartScreen(
         EmptyCartVompose()
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 8.dp)
-    ) {
-        items(items){ menuItem->
-            MenuItemComposable(menuItem, onAddToCartClicked)
+    Column() {
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(top = 8.dp)
+        ) {
+            items(items){ menuItem->
+                MenuItemComposable(menuItem, onAddToCartClicked)
+            }
+
+
         }
 
         if (items.isNotEmpty())
-        item(){
             Card(Modifier.padding(8.dp)) {
                 Column(Modifier.padding(8.dp)) {
+
+                    Text(text = "Total of : $price", color = Color.Black, fontSize = 18.sp)
 
                     Button(
                         modifier = Modifier
@@ -63,8 +71,8 @@ fun CartScreen(
                     }
                 }
             }
-        }
     }
+
 }
 
 @Composable

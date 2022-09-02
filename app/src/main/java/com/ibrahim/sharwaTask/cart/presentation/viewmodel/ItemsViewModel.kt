@@ -94,6 +94,9 @@ data class ItemsState(
     val cartCount: Int
         get() = items.filter { it.isAddedToCart }.size
 
+    val price: Int
+        get() = cartTtems.sumOf { it.price }
+
 
     val cartTtems: List<MenuItem>
         get() = items.filter { it.isAddedToCart }
