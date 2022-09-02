@@ -20,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        testInstrumentationRunner = "com.ibrahim.sharwaTask.CustomTestRunner"
     }
 
     buildTypes {
