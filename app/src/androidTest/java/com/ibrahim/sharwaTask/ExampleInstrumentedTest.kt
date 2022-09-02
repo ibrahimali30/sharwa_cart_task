@@ -1,12 +1,21 @@
 package com.ibrahim.sharwaTask
 
+import androidx.compose.runtime.remember
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.ibrahim.sharwaTask.cart.data.ItemsRemoteDataSource
+import com.ibrahim.sharwaTask.cart.presentation.viewmodel.ItemsState
+import com.ibrahim.sharwaTask.home.HomeScreen
+import com.ibrahim.sharwaTask.ui.theme.TaskTheme
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Rule
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,10 +24,34 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
+    val itemsRemoteDataSource = ItemsRemoteDataSource()
+
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.ibrahim.sharwaTask", appContext.packageName)
+    fun areHerosShown() {
+        val items = itemsRemoteDataSource.getMokedList()!!.get(0).menuCategory
+
+        composeTestRule.setContent {
+            TaskTheme() {
+                val state = remember {
+                    ItemsState(
+                        items = items
+                    )
+                }
+                HomeScreen(
+                    items = state.items,
+                    onAddToCartClicked = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithText(items.first().name).assertIsDisplayed()
+        composeTestRule.onNodeWithText(items.first().decscriptionText).assertIsDisplayed()
+        composeTestRule.onNodeWithText("${items.first().price} ${items.first().currecy}").assertIsDisplayed()
     }
+
+
+
 }

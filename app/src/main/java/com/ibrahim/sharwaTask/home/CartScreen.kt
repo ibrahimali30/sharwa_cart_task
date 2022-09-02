@@ -1,5 +1,6 @@
 package com.ibrahim.sharwaTask.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,6 +19,7 @@ import com.ibrahim.sharwaTask.ui.theme.Green
 import com.ibrahim.sharwaTask.ui.theme.Yellow
 
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun CartScreen(
     items: List<MenuItem>,
