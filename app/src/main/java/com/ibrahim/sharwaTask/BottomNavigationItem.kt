@@ -7,7 +7,7 @@ data class BottomNavItem(
     val name: String,
     val route: String,
     val icon: ImageVector,
-    val badgeCount: Int = 0
+    val badgeCount: Int = -1
 )
 
 

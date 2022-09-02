@@ -33,7 +33,7 @@ fun BottomNavigationBar(
                 unselectedContentColor = Color.Gray,
                 icon = {
                     BadgedBox(badge = {
-                        if (item.badgeCount > 0) {
+                        if (item.badgeCount >= 0) {
 
                             Badge {
                                 Text(item.badgeCount.toString())

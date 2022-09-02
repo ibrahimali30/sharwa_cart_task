@@ -4,7 +4,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ibrahim.sharwaTask.cart.data.ItemsRemoteDataSource
 import com.ibrahim.sharwaTask.cart.presentation.viewmodel.ItemsState
@@ -14,7 +13,6 @@ import com.ibrahim.sharwaTask.ui.theme.TaskTheme
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
 import org.junit.Rule
 
 /**
@@ -23,7 +21,7 @@ import org.junit.Rule
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class MenuItemshome {
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -31,8 +29,8 @@ class ExampleInstrumentedTest {
 
 
     @Test
-    fun areHerosShown() {
-        val items = itemsRemoteDataSource.getMokedList()!!.get(0).menuCategory
+    fun are_menu_items_shown() {
+        val items = itemsRemoteDataSource.getMokedList()
 
         composeTestRule.setContent {
             TaskTheme() {
