@@ -1,15 +1,22 @@
 package com.ibrahim.sharwaTask
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ibrahim.sharwaTask.cart.data.ItemsRemoteDataSource
+import com.ibrahim.sharwaTask.cart.domain.entity.MenuItem
 import com.ibrahim.sharwaTask.cart.presentation.viewmodel.ItemsState
 import com.ibrahim.sharwaTask.home.CartScreen
 import com.ibrahim.sharwaTask.home.HomeScreen
 import com.ibrahim.sharwaTask.ui.theme.TaskTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -51,6 +58,33 @@ class CartIemsScreen {
         composeTestRule.onNodeWithText(items.first().name).assertIsDisplayed()
         composeTestRule.onNodeWithText(items.first().decscriptionText).assertIsDisplayed()
         composeTestRule.onNodeWithText("${items.first().price} ${items.first().currecy}").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Yor Cart IS Empty").assertDoesNotExist()
+    }
+
+    @Test
+    fun are_empty_msg_shown() {
+        val items = listOf<MenuItem>()
+        val state = mutableStateOf(ItemsState(
+            items = items
+        ))
+        composeTestRule.setContent {
+            TaskTheme() {
+
+                CartScreen(
+                    items = state.value.items,
+                    onAddToCartClicked = {}
+                )
+            }
+        }
+
+        composeTestRule.onNodeWithText("Yor Cart IS Empty").assertIsDisplayed()
+
+        state.value = ItemsState()
+        state.value = state.value.copy(items = itemsRemoteDataSource.getMokedList())
+
+        composeTestRule.onNodeWithText("Yor Cart IS Empty").assertDoesNotExist()
+
+
     }
 
 
