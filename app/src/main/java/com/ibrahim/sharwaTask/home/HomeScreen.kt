@@ -5,13 +5,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.ibrahim.sharwaTask.cart.ItemsState
-import com.ibrahim.sharwaTask.cart.ItemsViewModel
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Card
@@ -19,10 +14,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
-import com.ibrahim.sharwaTask.cart.MenuItem
+import com.ibrahim.sharwaTask.cart.domain.entity.MenuItem
 import com.ibrahim.sharwaTask.ui.theme.Green
 import com.ibrahim.sharwaTask.ui.theme.Yellow
 

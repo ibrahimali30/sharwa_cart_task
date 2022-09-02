@@ -1,13 +1,12 @@
 package com.ibrahim.sharwaTask.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ibrahim.sharwaTask.cart.ItemsState
-import com.ibrahim.sharwaTask.cart.MenuItem
+import com.ibrahim.sharwaTask.cart.presentation.viewmodel.ItemsState
+import com.ibrahim.sharwaTask.cart.domain.entity.MenuItem
 import com.ibrahim.sharwaTask.home.CartScreen
 import com.ibrahim.sharwaTask.home.HomeScreen
 

@@ -1,33 +1,24 @@
-package com.ibrahim.sharwaTask.cart
+package com.ibrahim.sharwaTask.cart.presentation.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.ibrahim.sharwaTask.cart.data.ItemsRemoteDataSource
+import com.ibrahim.sharwaTask.cart.domain.entity.MenuItem
+import com.ibrahim.sharwaTask.cart.domain.interactor.CartOperationsUsecase
+import com.ibrahim.sharwaTask.cart.domain.interactor.GetItemsUsecase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class ItemsViewModel @Inject constructor(
-
+    private val getItemsUsecase: GetItemsUsecase,
+    private val cartOperationsUsecase: CartOperationsUsecase
 ): ViewModel(){
 
     val state: MutableState<ItemsState> = mutableStateOf(ItemsState(ItemsRemoteDataSource().getMokedList()!!.get(0).menuCategory))
-
-
-    init {
-        viewModelScope.launch {
-            delay(5000)
-            clearCart()
-        }
-    }
 
 
     fun addItemToCart(menuItem: MenuItem){

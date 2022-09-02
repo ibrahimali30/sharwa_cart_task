@@ -1,9 +1,8 @@
-package com.ibrahim.sharwaTask.cart
+package com.ibrahim.sharwaTask.cart.data
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-
-
+import com.ibrahim.sharwaTask.cart.domain.entity.ItemsResponse
 
 
 class ItemsRemoteDataSource {
@@ -52,10 +51,6 @@ class ItemsRemoteDataSource {
 
 
 
-
-
-
-
     fun getMokedList(): ItemsResponse? {
         val gson = Gson()
         val token = object : TypeToken<ItemsResponse>() {}.type
@@ -66,21 +61,3 @@ class ItemsRemoteDataSource {
 }
 
 
-class ItemsResponse : ArrayList<ItemsResponseItem>()
-
-data class ItemsResponseItem(
-    val icon: String,
-    val id: String,
-    val menuCategory: List<MenuItem>,
-    val name: String
-)
-
-data class MenuItem(
-    val currecy: String,
-    val decscriptionText: String,
-    val icon: String,
-    val id: String,
-    val name: String,
-    val price: Int,
-    var isAddedToCart: Boolean = false
-)

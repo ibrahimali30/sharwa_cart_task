@@ -13,12 +13,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.ibrahim.sharwaTask.cart.ItemsViewModel
-import com.ibrahim.sharwaTask.cart.MenuItem
+import com.ibrahim.sharwaTask.cart.presentation.viewmodel.ItemsViewModel
 import com.ibrahim.sharwaTask.home.BottomNavigationBar
 import com.ibrahim.sharwaTask.navigation.Navigation
 import com.ibrahim.sharwaTask.ui.theme.BackGround
