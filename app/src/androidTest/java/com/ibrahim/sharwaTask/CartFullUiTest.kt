@@ -34,6 +34,7 @@ import com.ibrahim.sharwaTask.home.HomeScreen
 import com.ibrahim.sharwaTask.ui.navigation.Screen
 import com.ibrahim.sharwaTask.ui.theme.TaskTheme
 import com.ibrahim.sharwaTask.MainActivity
+import com.ibrahim.sharwaTask.extensions.waitUntilDoesNotExist
 import com.ibrahim.sharwaTask.test.*
 import dagger.Module
 import dagger.Provides
@@ -161,9 +162,9 @@ class CartFullUiTest {
             }
         }
     }
-    
+
     @Test
-    fun sdfdfdf(){
+    fun test_Add_To_Cart(){
         composeTestRule.onRoot(useUnmergedTree = true).printToLog("TAGGGG") // For learning the ui tree system
 
 //        composeTestRule.onNodeWithTag(TAG_MENU_HOME).performClick()
@@ -195,7 +196,39 @@ class CartFullUiTest {
         composeTestRule.onAllNodesWithTag(TAG_Item_Name, useUnmergedTree = true).onFirst().assertTextEquals(
             "Desert 1",
         )
-        composeTestRule.onAllNodesWithTag(TAG_Add_To_Cart).onFirst().assertTextEquals("Remove from cart")
+
+    }
+
+    @Test
+    fun test_Add_Remove_From_Cart(){
+        test_Add_To_Cart()
+
+        val button = composeTestRule.onAllNodesWithTag(TAG_Add_To_Cart).onFirst()
+        button.assertTextEquals("Remove from cart")
+        button.performClick()
+
+        composeTestRule.waitUntilDoesNotExist(
+            hasTestTag(TAG_Add_To_Cart_Progress),
+            timeoutMillis = 3000
+        )
+
+
+        composeTestRule.onAllNodesWithTag(TAG_Add_To_Cart).onFirst().assertDoesNotExist()
+
+        composeTestRule.onNodeWithText("Yor Cart IS Empty").assertIsDisplayed()
+    }
+
+
+
+    @Test
+    fun test_Remov_Alle_From_Cart(){
+        test_Add_To_Cart()
+
+        composeTestRule.onNodeWithText("Yor Cart IS Empty").assertDoesNotExist()
+
+        composeTestRule.onNodeWithText("Clear Cart").performClick()
+
+        composeTestRule.onNodeWithText("Yor Cart IS Empty").assertIsDisplayed()
 
 
     }
@@ -207,27 +240,3 @@ class CartFullUiTest {
 
 
 
-
-fun ComposeContentTestRule.waitUntilExists(
-    matcher: SemanticsMatcher,
-    timeoutMillis: Long = 1_000L
-) {
-    return this.waitUntilNodeCount(matcher, 1, timeoutMillis)
-}
-
-fun ComposeContentTestRule.waitUntilDoesNotExist(
-    matcher: SemanticsMatcher,
-    timeoutMillis: Long = 1_000L
-) {
-    return this.waitUntilNodeCount(matcher, 0, timeoutMillis)
-}
-
-fun ComposeContentTestRule.waitUntilNodeCount(
-    matcher: SemanticsMatcher,
-    count: Int,
-    timeoutMillis: Long = 1_000L
-) {
-    this.waitUntil(timeoutMillis) {
-        this.onAllNodes(matcher).fetchSemanticsNodes().size == count
-    }
-}
