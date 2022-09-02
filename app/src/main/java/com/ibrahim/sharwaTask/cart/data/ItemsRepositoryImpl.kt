@@ -11,7 +11,7 @@ class ItemsRepositoryImpl@Inject constructor(
     private val itemsRemoteDataSource: ItemsRemoteDataSource
 ): ItemsRepository {
     override fun getItems(): Flow<List<MenuItem>> = flow{
-        emit(itemsRemoteDataSource.getMokedList()!!.first().menuCategory)
+        emit(itemsRemoteDataSource.getMokedList())
     }
 
     override fun addItemToCart(menuItem: MenuItem): Flow<MenuItem> = flow{

@@ -3,6 +3,7 @@ package com.ibrahim.sharwaTask.cart.data
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ibrahim.sharwaTask.cart.domain.entity.ItemsResponse
+import com.ibrahim.sharwaTask.cart.domain.entity.MenuItem
 
 
 class ItemsRemoteDataSource {
@@ -51,10 +52,10 @@ class ItemsRemoteDataSource {
 
 
 
-    fun getMokedList(): ItemsResponse? {
+    fun getMokedList(): List<MenuItem> {
         val gson = Gson()
         val token = object : TypeToken<ItemsResponse>() {}.type
-        return gson.fromJson<ItemsResponse>(json, token)
+        return gson.fromJson<ItemsResponse>(json, token).first().menuCategory
 
     }
 
